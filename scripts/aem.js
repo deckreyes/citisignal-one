@@ -296,6 +296,7 @@ function createOptimizedPicture(
     if (br.media) source.setAttribute('media', br.media);
     source.setAttribute('type', 'image/webp');
     source.setAttribute('srcset', `${imageParent}${pathname}?width=${br.width}&format=webply&optimize=medium`);
+    //source.setAttribute('srcset', `${pathname}?width=${br.width}&format=webply&optimize=medium`);
     picture.appendChild(source);
   });
 
