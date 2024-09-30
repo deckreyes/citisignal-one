@@ -32,9 +32,8 @@ export const calcEnvironment = () => {
 
 function buildConfigURL(environment) {
   const env = environment || calcEnvironment();
-  if (aemxwalk === 'true'){let fileName = 'configs.json'; } else {
-    let fileName = 'configs.json?sheet=prod';
-  }
+  let fileName = 'configs.json?sheet=prod';
+  
   if (env !== 'prod') {
     fileName = `configs-${env}.json`;
   }
