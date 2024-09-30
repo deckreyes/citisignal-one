@@ -38,6 +38,13 @@ function buildConfigURL(environment) {
       if (env !== 'prod') {
         fileName = `configs-${env}.json`;
       }
+  } else {
+     let fileName = 'configs.json?sheet=prod';
+     console.log(`delivering from doc-based`)
+     if (env !== 'prod') {
+            fileName = `configs-${env}.json`;
+          }
+        }
       const configURL = new URL(`${window.location.origin}/${fileName}`);
       /* eslint-disable-next-line no-use-before-define */
       if (getAemAuthorEnv()) {
@@ -45,17 +52,8 @@ function buildConfigURL(environment) {
         const aemContentPath = getAemContentPath();
         return new URL(`${window.location.origin}${aemContentPath}/${fileName}`);
       }
-      return configURL;
-  } else {
-      let fileName = 'configs.json?sheet=prod';
-      console.log(`delivering from doc-based`)
-        if (env !== 'prod') {
-          fileName = `configs-${env}.json`;
-        }
-        const configURL = new URL(`${window.location.origin}/${fileName}`);
-        return configURL;
+      return configURL;  
   } 
-}
 
 const getConfigForEnvironment = async (environment) => {
   const env = environment || calcEnvironment();
