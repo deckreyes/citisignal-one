@@ -34,6 +34,7 @@ function buildConfigURL(environment) {
   const env = environment || calcEnvironment();
   if (aemxwalk === 'true'){
     let fileName = 'configs.json';
+    console.log(`delivering from xwalk`) 
       if (env !== 'prod') {
         fileName = `configs-${env}.json`;
       }
@@ -47,6 +48,7 @@ function buildConfigURL(environment) {
       return configURL;
   } else {
       let fileName = 'configs.json?sheet=prod';
+      console.log(`delivering from doc-based`)
         if (env !== 'prod') {
           fileName = `configs-${env}.json`;
         }
