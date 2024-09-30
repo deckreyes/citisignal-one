@@ -50,7 +50,7 @@ function buildConfigURL(environment) {
       if (getAemAuthorEnv()) {
         // eslint-disable-next-line no-use-before-define
         const aemContentPath = getAemContentPath();
-        return new URL(`${window.location.origin}${aemContentPath}/${fileName}`);
+        return new URL(`${window.location.origin}${aemContentPath}/${__filename}`);
       }
       return configURL;  
   } 
