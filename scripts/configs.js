@@ -36,13 +36,13 @@ function buildConfigURL(environment) {
     let fileName = 'configs.json';
   } else {
     let fileName = 'configs.json?sheet=prod';
+      if (env !== 'prod') {
+        fileName = `configs-${env}.json`;
+      }
+      const configURL = new URL(`${window.location.origin}/${fileName}`);
+      return configURL;
   } 
-  if (env !== 'prod') {
-    fileName = `configs-${env}.json`;
-  }
-  const configURL = new URL(`${window.location.origin}/${fileName}`);
-  return configURL;
-}
+
 
 const getConfigForEnvironment = async (environment) => {
   const env = environment || calcEnvironment();
