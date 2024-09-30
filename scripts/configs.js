@@ -34,13 +34,24 @@ function buildConfigURL(environment) {
   const env = environment || calcEnvironment();
   if (aemxwalk === 'true'){
     let fileName = 'configs.json';
-  } else {
-    let fileName = 'configs.json?sheet=prod';
       if (env !== 'prod') {
         fileName = `configs-${env}.json`;
       }
       const configURL = new URL(`${window.location.origin}/${fileName}`);
+      /* eslint-disable-next-line no-use-before-define */
+      if (getAemAuthorEnv()) {
+        // eslint-disable-next-line no-use-before-define
+        const aemContentPath = getAemContentPath();
+        return new URL(`${window.location.origin}${aemContentPath}/${fileName}`);
+      }
       return configURL;
+  } else {
+      let fileName = 'configs.json?sheet=prod';
+        if (env !== 'prod') {
+          fileName = `configs-${env}.json`;
+        }
+        const configURL = new URL(`${window.location.origin}/${fileName}`);
+        return configURL;
   } 
 }
 
