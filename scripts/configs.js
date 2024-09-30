@@ -3,7 +3,7 @@ const ALLOWED_CONFIGS = ['prod', 'stage', 'dev'];
 // Added to check if doc or xwalk.
 import { getMetadata } from '../../scripts/aem.js';
 const aemxwalk = getMetadata('aemxwalk');
-console.log(`${aemxwalk}`);
+console.log(`Are we delivering from crosswalk? ${aemxwalk}`);
 
 /**
  * This function calculates the environment in which the site is running based on the URL.
