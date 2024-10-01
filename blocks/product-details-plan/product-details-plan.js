@@ -193,12 +193,8 @@ export default async function decorate(block) {
           const modifiedImageFileName = imageFileName.replace(/_/g, '-');
 
           // Update the URL to the new format
-<<<<<<< HEAD
           //image.url = `/images/products/${modifiedImageFileName}`;
           image.url = `${imageParent}/images/products/${modifiedImageFileName}`;
-=======
-          image.url = `/images/products/${modifiedImageFileName}`;
->>>>>>> citisignal/main
         });
         return {
           ...data,
@@ -270,11 +266,7 @@ export default async function decorate(block) {
                     : blockConfig['add-to-cart-btn-text'] || placeholders.pdpProductAddtocart,
                   icon: 'Cart',
                   variant: 'primary',
-<<<<<<< HEAD
                   disabled: adding || !next.data.inStock,
-=======
-                  disabled: adding || !next.data.inStock || !next.valid,
->>>>>>> citisignal/main
                   onClick: async () => {
                     try {
                       // Plans flow

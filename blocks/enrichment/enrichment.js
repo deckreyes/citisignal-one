@@ -2,11 +2,11 @@ import { readBlockConfig } from '../../scripts/aem.js';
 import { fetchIndex } from '../../scripts/scripts.js';
 import { getSkuFromUrl } from '../../scripts/commerce.js';
 import { loadFragment } from '../fragment/fragment.js';
-//import { getAemAuthorEnv } from '../../scripts/configs.js';
+import { getAemAuthorEnv } from '../../scripts/configs.js';
 
 export default async function decorate(block) {
   const { type, position } = readBlockConfig(block);
-  //const isAemAuthor = getAemAuthorEnv();
+  const isAemAuthor = getAemAuthorEnv();
 
   try {
     const filters = {};
@@ -39,7 +39,7 @@ export default async function decorate(block) {
     }
 
     const index = await fetchIndex('enrichment/enrichment');
-    //if (!isAemAuthor) {
+    if (!isAemAuthor) {
       const matchingFragments = index.data
         .filter((fragment) => Object.keys(filters).every((filterKey) => {
           const values = JSON.parse(fragment[filterKey]);
@@ -67,12 +67,12 @@ export default async function decorate(block) {
                 .parentNode.insertBefore(section, blockSection.nextSibling));
           }
         });
-    //}
+    }
   } catch (error) {
     console.error(error);
   } finally {
-    //if (!isAemAuthor) {
+    if (!isAemAuthor) {
       block.closest('.enrichment-wrapper')?.remove();
-    //}
+    }
   }
 }
