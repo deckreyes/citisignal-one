@@ -130,11 +130,8 @@ export default async function decorate(block) {
   let productSku;
   if (product) {
     // product available
-<<<<<<< HEAD
     productSku = skuFromUrl; // getSkuFromUrl();
-=======
-    productSku = getSkuFromUrl();
->>>>>>> citisignal/main
+    //productSku = getSkuFromUrl();
   } else {
     // no product found, no sku
     product = await getProduct(blockConfig['default-product']);
@@ -195,11 +192,8 @@ export default async function decorate(block) {
           const modifiedImageFileName = imageFileName.replace(/_/g, '-');
 
           // Update the URL to the new format
-<<<<<<< HEAD
-          image.url = `${imageParent}/images/products/${modifiedImageFileName}`;
-=======
+          //image.url = `${imageParent}/images/products/${modifiedImageFileName}`;
           image.url = `/images/products/${modifiedImageFileName}`;
->>>>>>> citisignal/main
         });
         return {
           ...data,
@@ -271,11 +265,8 @@ export default async function decorate(block) {
                     : blockConfig['add-to-cart-btn-text'] || placeholders.pdpProductAddtocart,
                   icon: 'Cart',
                   variant: 'primary',
-<<<<<<< HEAD
                   disabled: adding || !next.data.inStock,
-=======
-                  disabled: adding || !next.data.inStock || !next.valid,
->>>>>>> citisignal/main
+                  //disabled: adding || !next.data.inStock || !next.valid,
                   onClick: async () => {
                     try {
                       state.set('adding', true);
@@ -287,11 +278,8 @@ export default async function decorate(block) {
                       const addToCartResponse = await addProductsToCart([{ ...next.values }]);
 
                       // toast notification
-<<<<<<< HEAD
                       if (next.valid && !addToCartResponse.errors) {
-=======
-                      if (next.valid && addToCartResponse.errors !== null) {
->>>>>>> citisignal/main
+                      //if (next.valid && addToCartResponse.errors !== null) {
                         const { quantity } = next.values;
                         const productMetaDescription = next.data.metaDescription;
                         initToast(quantity, productMetaDescription);
