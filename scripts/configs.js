@@ -1,7 +1,7 @@
 const ALLOWED_CONFIGS = ['prod', 'stage', 'dev'];
 
 // Added to check if doc or xwalk.
-import { getMetadata } from '../../scripts/aem.js';
+import { getMetadata } from './aem.js';
 const aemxwalk = getMetadata('aemxwalk');
 console.log(`Are we delivering from crosswalk? ${aemxwalk}`);
 
