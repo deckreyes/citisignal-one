@@ -130,8 +130,8 @@ export default async function decorate(block) {
   let productSku;
   if (product) {
     // product available
-    productSku = skuFromUrl; // getSkuFromUrl();
-    //productSku = getSkuFromUrl();
+    //productSku = skuFromUrl; // getSkuFromUrl();
+    productSku = getSkuFromUrl();
   } else {
     // no product found, no sku
     product = await getProduct(blockConfig['default-product']);
