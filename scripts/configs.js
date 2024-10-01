@@ -1,7 +1,7 @@
 const ALLOWED_CONFIGS = ['prod', 'stage', 'dev'];
 
 // Added to check if doc or xwalk.
-//const isAemAuthor = getAemAuthorEnv();
+//const isAemAuthor = getAemAuthorEnv(); 
 if (!isAemAuthor) {
 //import { getMetadata } from '../../scripts/aem.js';
 const aemxwalk = getMetadata('aemxwalk');
