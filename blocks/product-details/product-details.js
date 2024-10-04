@@ -264,8 +264,9 @@ export default async function decorate(block) {
                     ? next.dictionary.Custom.AddingToCart?.label
                     : blockConfig['add-to-cart-btn-text'] || placeholders.pdpProductAddtocart,
                   icon: 'Cart',
-                  variant: 'primary',                 
-                  disabled: adding || !next.data.inStock || !next.valid,
+                  variant: 'primary',
+                  disabled: adding || !next.data.inStock,
+                  //  disabled: adding || !next.data.inStock || !next.valid,
                   onClick: async () => {
                     try {
                       state.set('adding', true);
@@ -277,7 +278,8 @@ export default async function decorate(block) {
                       const addToCartResponse = await addProductsToCart([{ ...next.values }]);
 
                       // toast notification
-                      if (next.valid && addToCartResponse) {
+                      if (next.valid && !addToCartResponse.errors) {
+                      // if (next.valid && addToCartResponse.errors !== null) {
                         const { quantity } = next.values;
                         const productMetaDescription = next.data.metaDescription;
                         initToast(quantity, productMetaDescription);
