@@ -296,7 +296,7 @@ function createOptimizedPicture(
     if (br.media) source.setAttribute('media', br.media);
     source.setAttribute('type', 'image/webp');
     source.setAttribute('srcset', `${imageParent}${pathname}?width=${br.width}&format=webply&optimize=medium`);
-    //source.setAttribute('srcset', `${pathname}?width=${br.width}&format=webply&optimize=medium`);
+    //  source.setAttribute('srcset', `${pathname}?width=${br.width}&format=webply&optimize=medium`);
     picture.appendChild(source);
   });
 
@@ -647,6 +647,24 @@ function decorateBlock(block) {
   }
 }
 
+/* custom function if section metadata has "author" style class */
+function decorateSectionFromMetadata(main) {
+  const authorSection = main.querySelector('.section.author');
+  if (authorSection) {
+    const wrapper = authorSection.querySelector('.default-content-wrapper');
+    const newDiv = document.createElement('div');
+    newDiv.classList.add('content-wrapper');
+
+    const paragraphs = wrapper.querySelectorAll('p');
+    paragraphs.forEach((paragraph) => {
+      if (!paragraph.querySelector('picture') && !paragraph.querySelector('img')) {
+        newDiv.appendChild(paragraph);
+      }
+    });
+    wrapper.appendChild(newDiv);
+  }
+}
+
 /**
  * Decorates all blocks in a container element.
  * @param {Element} main The container element
@@ -711,6 +729,7 @@ export {
   decorateButtons,
   decorateIcons,
   decorateSections,
+  decorateSectionFromMetadata,
   decorateTemplateAndTheme,
   fetchPlaceholders,
   getMetadata,

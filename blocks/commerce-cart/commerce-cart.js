@@ -19,7 +19,7 @@ export default async function decorate(block) {
   return provider.render(Cart, {
     routeEmptyCartCTA: () => '/',
     routeProduct: (product) => `/products/${product.url.urlKey}/${product.sku}`,
-    //routeProduct: (product) => `/products/${product.sku}`,
+    //  routeProduct: (product) => `/products/${product.sku}`,
     routeCheckout: () => '/checkout',
   })(block);
 }

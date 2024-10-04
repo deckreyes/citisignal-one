@@ -130,7 +130,7 @@ export default async function decorate(block) {
   let productSku;
   if (product) {
     // product available
-    //productSku = skuFromUrl; // getSkuFromUrl();
+    // productSku = skuFromUrl; // getSkuFromUrl();
     productSku = getSkuFromUrl();
   } else {
     // no product found, no sku
@@ -191,9 +191,9 @@ export default async function decorate(block) {
           const imageFileName = imageUrlParts[imageUrlParts.length - 1];
           const modifiedImageFileName = imageFileName.replace(/_/g, '-');
 
-          // Update the URL to the new format
+          //  Update the URL to the new format
           image.url = `${imageParent}/images/products/${modifiedImageFileName}`;
-          //image.url = `/images/products/${modifiedImageFileName}`;
+          //  image.url = `/images/products/${modifiedImageFileName}`;
         });
         return {
           ...data,
@@ -264,9 +264,8 @@ export default async function decorate(block) {
                     ? next.dictionary.Custom.AddingToCart?.label
                     : blockConfig['add-to-cart-btn-text'] || placeholders.pdpProductAddtocart,
                   icon: 'Cart',
-                  variant: 'primary',
-                  disabled: adding || !next.data.inStock,
-                  //disabled: adding || !next.data.inStock || !next.valid,
+                  variant: 'primary',                 
+                  disabled: adding || !next.data.inStock || !next.valid,
                   onClick: async () => {
                     try {
                       state.set('adding', true);
@@ -278,8 +277,7 @@ export default async function decorate(block) {
                       const addToCartResponse = await addProductsToCart([{ ...next.values }]);
 
                       // toast notification
-                      if (next.valid && !addToCartResponse.errors) {
-                      //if (next.valid && addToCartResponse.errors !== null) {
+                      if (next.valid && addToCartResponse) {
                         const { quantity } = next.values;
                         const productMetaDescription = next.data.metaDescription;
                         initToast(quantity, productMetaDescription);
