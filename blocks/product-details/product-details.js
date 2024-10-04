@@ -279,8 +279,8 @@ export default async function decorate(block) {
                       const addToCartResponse = await addProductsToCart([{ ...next.values }]);
 
                       // toast notification
-                      if (next.valid && !addToCartResponse.errors) {
-                      //if (next.valid && addToCartResponse.errors !== null) {
+                      // if (next.valid && !addToCartResponse.errors) {
+                        if (next.valid && addToCartResponse) {
                         const { quantity } = next.values;
                         const productMetaDescription = next.data.metaDescription;
                         initToast(quantity, productMetaDescription);
